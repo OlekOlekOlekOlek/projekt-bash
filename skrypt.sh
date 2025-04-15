@@ -28,4 +28,9 @@ case "$1" in
   *)
     echo "Nieznana flaga. Użyj --help"
     ;;
+  --init)
+    git clone https://github.com/OlekOlekOlekOlek/projekt-bash.git
+    echo "export PATH=\$PATH:$(pwd)/projekt-bash" >> ~/.bashrc
+    echo "Dodano projekt-bash do PATH (wymagane ponowne uruchomienie terminala)"
+    ;;
 esac
