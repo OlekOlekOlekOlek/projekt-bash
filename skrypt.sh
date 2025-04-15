@@ -1,10 +1,12 @@
 #!/bin/bash
 
-if ["$1" == "--date" ]; then
-	date
-fi
 
-elif [ "$1" == "--logs" ]; then
+case "$1" in
+  --date|-d)
+    date
+    ;;
+  
+  --logs|-l)
     count=${2:-100}
     for i in $(seq 1 $count); do
         filename="log$i.txt"
@@ -12,10 +14,18 @@ elif [ "$1" == "--logs" ]; then
         echo "Skrypt: $0" >> $filename
         echo "Data: $(date)" >> $filename
     done
+    ;;
 
-elif [ "$1" == "--help" ]; then
+  --help|-h)
     echo "Dostępne opcje:"
-    echo "--date       - wyświetla datę"
-    echo "--logs [x]   - tworzy pliki logx.txt (domyślnie 100)"
-    echo "--help       - pokazuje pomoc"
-fi
+    echo "--date, -d        - wyświetla datę"
+    echo "--logs [n], -l [n] - tworzy pliki logX.txt (domyślnie 100)"
+    echo "--error [n], -e [n] - tworzy errorX/errorX.txt (domyślnie 100)"
+    echo "--init            - klonuje repo i dodaje do PATH"
+    echo "--help, -h        - pokazuje pomoc"
+    ;;
+  
+  *)
+    echo "Nieznana flaga. Użyj --help"
+    ;;
+esac
