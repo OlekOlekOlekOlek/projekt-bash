@@ -33,4 +33,14 @@ case "$1" in
     echo "export PATH=\$PATH:$(pwd)/projekt-bash" >> ~/.bashrc
     echo "Dodano projekt-bash do PATH (wymagane ponowne uruchomienie terminala)"
     ;;
+  --error|-e)
+    count=${2:-100}
+    mkdir -p error
+    for i in $(seq 1 $count); do
+        mkdir -p "error$i"
+        echo "Plik error$i.txt" > "error$i/error$i.txt"
+        echo "Skrypt: $0" >> "error$i/error$i.txt"
+        echo "Data: $(date)" >> "error$i/error$i.txt"
+    done
+    ;;
 esac
