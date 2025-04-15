@@ -13,3 +13,9 @@ elif [ "$1" == "--logs" ]; then
         echo "Data: $(date)" >> $filename
     done
 
+elif [ "$1" == "--help" ]; then
+    echo "Dostępne opcje:"
+    echo "--date       - wyświetla datę"
+    echo "--logs [x]   - tworzy pliki logx.txt (domyślnie 100)"
+    echo "--help       - pokazuje pomoc"
+fi
